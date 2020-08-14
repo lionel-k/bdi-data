@@ -23,7 +23,7 @@
 
 
 class App < Sinatra::Base
-  get "/" do
-    "Hello world!"
+  post '/' do
+    'Hello world!'
   end
 end
