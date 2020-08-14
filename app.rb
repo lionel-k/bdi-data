@@ -1,25 +1,4 @@
-# Reads the variables sent via POST
-# session_id   = $_POST["sessionId"];
-# service_code = $_POST["serviceCode"];
-# text = $_POST["text"];
-
-# # This is the first menu screen
-
-# if text == ''
-#   response  = 'CON Hi welcome, I can help you with Event Reservation \n'
-#   response .= '1. Enter 1 to continue'
-#   # $response = "Hello".$_POST;
-# end
-
-# header('Content-type: text/plain')
-# return response
-
-# require 'rubygems'
-# require 'sinatra'
-
-# get '/' do
-#   'Hello from Sinatra on Heroku!'
-# end
+require 'date'
 require 'sinatra'
 require 'pry'
 
@@ -27,11 +6,30 @@ get '/' do
   'CON Hello world! from GET'
 end
 
+get '/exchange_rate' do
+  data = {
+    date: Date.today.strftime('%d-%m-%Y'),
+    usd: {
+      buyer: 1908.013,
+      seller: 1938.79
+    },
+    eur: {
+      buyer: 2254.890,
+      seller: 2291.26
+    },
+    dts: {
+      buyer: 2692.389,
+      seller: 2735.81
+    }
+  }
+  data.to_json
+end
+
 post '/' do
   session_id   = params['sessionId']
   service_code = params['serviceCode']
+  phone_number = params['phoneNumber']
+  network_code = params['networkCode']
   text = params['text']
   response = "CON Hi welcome, I can help you with Event Reservation \n"
-  puts params
-  response += params.to_s
 end
