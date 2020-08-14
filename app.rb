@@ -4,24 +4,26 @@ require 'sinatra/json'
 require 'pry'
 
 get '/' do
-  'CON Hello world! from GET'
+  'Welcome the open data portal on Burundi'
 end
 
-get '/exchange_rates' do
+get '/exchangerates' do
   data = {
-    date: Date.today.strftime('%d-%m-%Y'),
-    usd: {
-      buyer: 1908.013,
-      seller: 1938.79
-    },
-    eur: {
-      buyer: 2254.890,
-      seller: 2291.26
-    },
-    dts: {
-      buyer: 2692.389,
-      seller: 2735.81
-    }
+    date: Date.today.strftime('%Y-%m-%d'),
+    usd: 1908.013,
+    eur: 2254.890,
+    dts: 2692.389
+  }
+  return json data
+end
+
+get '/exchangerates/:date' do
+  date = params[:date]
+  data = {
+    date: date,
+    usd: 1910,
+    eur: 2220,
+    dts: 2692
   }
   return json data
 end
