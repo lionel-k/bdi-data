@@ -21,7 +21,6 @@
 #   'Hello from Sinatra on Heroku!'
 # end
 require 'sinatra'
-require 'pry'
 
 get '/' do
   'CON Hello world! from GET'
