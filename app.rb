@@ -1,12 +1,13 @@
 require 'date'
 require 'sinatra'
+require 'sinatra/json'
 require 'pry'
 
 get '/' do
   'CON Hello world! from GET'
 end
 
-get '/exchange_rate' do
+get '/exchange_rates' do
   data = {
     date: Date.today.strftime('%d-%m-%Y'),
     usd: {
@@ -22,7 +23,7 @@ get '/exchange_rate' do
       seller: 2735.81
     }
   }
-  data.to_json
+  return json data
 end
 
 post '/' do
