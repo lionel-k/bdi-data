@@ -21,11 +21,16 @@
 #   'Hello from Sinatra on Heroku!'
 # end
 require 'sinatra'
+require 'pry'
 
 get '/' do
   'CON Hello world! from GET'
 end
 
 post '/' do
-  'CON Hello world! from POST'
+  session_id   = params['sessionId']
+  service_code = params['serviceCode']
+  text = params['text']
+  response = "CON Hi welcome, I can help you with Event Reservation \n"
+  response += "1. Enter 1 to continue"
 end
