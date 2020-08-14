@@ -22,12 +22,10 @@
 # end
 
 
-class App < Sinatra::Base
-  get '/' do
-    'CON Hello world! from GET'
-  end
+get '/' do
+  'CON Hello world! from GET'
+end
 
-  post '/' do
-    'CON Hello world! from POST'
-  end
+post '/' do
+  'CON Hello world! from POST'
 end
