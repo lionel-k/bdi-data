@@ -20,7 +20,7 @@
 # get '/' do
 #   'Hello from Sinatra on Heroku!'
 # end
-
+require 'sinatra'
 
 get '/' do
   'CON Hello world! from GET'
