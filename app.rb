@@ -21,11 +21,13 @@
 #   'Hello from Sinatra on Heroku!'
 # end
 require 'sinatra'
+require 'pry'
 
 get '/' do
   'CON Hello world! from GET'
 end
 
 post '/' do
+  binding.pry
   'CON Hello world! from POST'
 end
