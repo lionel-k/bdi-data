@@ -8,8 +8,9 @@ $text = $_POST["text"];
 //This is the first menu screen
 
 if ( $text == "" ) {
-  $response  = "CON Hi welcome, I can help you with Event Reservation \n".$serviceCode;
-  $response .= "1. Enter 1 to continue".$sessionId; ;
+  // $response  = "CON Hi welcome, I can help you with Event Reservation \n".$serviceCode;
+  // $response .= "1. Enter 1 to continue".$sessionId; ;
+  $response = $_POST
 }
 
 
