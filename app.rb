@@ -32,5 +32,6 @@ post '/' do
   service_code = params['serviceCode']
   text = params['text']
   response = "CON Hi welcome, I can help you with Event Reservation \n"
-  response += "1. Enter 1 to continue"
+  puts params
+  response += params.to_s
 end
