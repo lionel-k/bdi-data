@@ -24,6 +24,6 @@
 
 class App < Sinatra::Base
   post '/' do
-    'Hello world!'
+    'CON Hello world!'
   end
 end
