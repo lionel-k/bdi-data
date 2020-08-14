@@ -14,9 +14,16 @@
 # header('Content-type: text/plain')
 # return response
 
-require 'rubygems'
-require 'sinatra'
+# require 'rubygems'
+# require 'sinatra'
 
-get '/' do
-  'Hello from Sinatra on Heroku!'
+# get '/' do
+#   'Hello from Sinatra on Heroku!'
+# end
+
+
+class App < Sinatra::Base
+  get "/" do
+    "Hello world!"
+  end
 end
