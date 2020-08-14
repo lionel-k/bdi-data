@@ -28,6 +28,5 @@ get '/' do
 end
 
 post '/' do
-  binding.pry
   'CON Hello world! from POST'
 end
