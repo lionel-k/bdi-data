@@ -14,5 +14,5 @@ if text == ''
 end
 
 header('Content-type: text/plain')
-puts response
+return response
 
