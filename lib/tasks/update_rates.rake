@@ -3,7 +3,7 @@ require 'nokogiri'
 
 desc 'Add latest rate from BRB website'
 task :update_rates do
-  html_content = open('lib/tasks/brb.html').read
+  html_content = open('https://brb.bi/').read
   doc = Nokogiri::HTML(html_content)
 
   exchange_rate = ExchangeRate.find_or_create_by(date: Date.yesterday)
