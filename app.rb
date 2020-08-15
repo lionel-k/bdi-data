@@ -55,7 +55,7 @@ post '/ussd' do
 
   if text == ''
     response  = "CON Karibu kuri Burundi Data? \n"
-    response += "Twogushaka gute ? \n"
+    response += "Twobafasha gute ? \n"
     response += "1. Amafaranga avunjwa gute ? \n"
     response += '2. Haraza kurwa imvura ?'
 
