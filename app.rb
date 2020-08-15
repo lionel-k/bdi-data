@@ -8,7 +8,9 @@ require 'pry'
 set :database_file, 'config/database.yml'
 
 get '/' do
-  'Welcome to Burundi Data'
+  response = { message: 'Welcome to Burundi Data' }
+  return json response
+  # erb :index
 end
 
 get '/exchangerates' do
