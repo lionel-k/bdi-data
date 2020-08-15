@@ -10,7 +10,6 @@ set :database_file, 'config/database.yml'
 get '/' do
   response = { message: 'Welcome to Burundi Data' }
   return json response
-  # erb :index
 end
 
 get '/exchangerates' do
