@@ -56,7 +56,7 @@ post '/ussd' do
     response  = "CON Karibu kuri Burundi Data? \n"
     response += "Twogushaka gute ? \n"
     response += "1. Amafaranga avunjwa gute ? \n"
-    response += '2. Haraza kurwa invura ?'
+    response += '2. Haraza kurwa imvura ?'
 
   elsif text == '1'
     exchange_rate = ExchangeRate.find_by(date: Date.today)
@@ -66,11 +66,12 @@ post '/ussd' do
 
   elsif text == '2'
     will_rain  = 'Ego'
-    response = "CON Uri muri province iyahe ?"
+    response = "CON Uri muri ntara iyahe ?"
 
-  elsif text == '2*1'
-    will_rain  = 'Ego'
-    response = "END #{will_rain}"
+  elsif text.match(/2\*\w+/)
+    region = text.match(/2\*(\w+)/)[1]
+    will_rain  = ['Ego', 'Oya'].sample
+    response = "END Mu ntara ya #{region} : #{will_rain}"
   end
 
   body response
