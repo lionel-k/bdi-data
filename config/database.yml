@@ -1,14 +1,21 @@
-development:
+default: &default
   adapter: sqlite3
-  database: database.db
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/development.sqlite3
 
 test:
-  adapter: sqlite3
-  database: database.db
+  <<: *default
+  database: db/test.sqlite3
 
 production:
   adapter: postgresql
-  database: sch_database #rename this to whatever you want
-  username: username
-  password: password
-  host: localhost
+  encoding: unicode
+  pool: 5
+  host: <%= ENV['DATABASE_HOST'] || 'db' %>
+  database: <%= ENV['DATABASE_NAME'] || 'sinatra' %>
+  username: <%= ENV['DATABASE_USER'] || 'sinatra' %>
+  password: <%= ENV['DATABASE_PASSWORD'] || 'sinatra' %>

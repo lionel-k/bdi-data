@@ -1,19 +1,22 @@
 require 'date'
 require 'sinatra'
+require 'sinatra/activerecord'
 require 'sinatra/json'
+require "sinatra/reloader" if development?
 require 'pry'
+
+set :database_file, 'config/database.yml'
 
 get '/' do
   'Welcome the open data portal on Burundi'
 end
 
 get '/exchangerates' do
-  data = {
-    date: Date.today.strftime('%Y-%m-%d'),
-    usd: 1908.013,
-    eur: 2254.890,
-    dts: 2692.389
-  }
+  today = Date.today
+  exchange_rate = ExchangeRate.find_by(date: today)
+  currencies = exchange_rate.currencies
+  data = { date: today.strftime('%Y-%m-%d') }
+  currencies.each { |currency| data[currency.name] = currency.rate }
   return json data
 end
 
@@ -22,8 +25,7 @@ get '/exchangerates/:date' do
   data = {
     date: date,
     usd: 1910,
-    eur: 2220,
-    dts: 2692
+    eur: 2220
   }
   return json data
 end
@@ -36,3 +38,5 @@ post '/' do
   text = params['text']
   response = "CON Hi welcome, I can help you with Event Reservation \n"
 end
+
+require './models'

@@ -4,9 +4,18 @@ source 'https://rubygems.org'
 
 ruby '2.6.6'
 
+# Sinatra
 gem 'sinatra'
+gem 'sinatra-activerecord', '~> 2.0'
 gem 'sinatra-contrib'
+
+# Debugging
 gem 'pry'
+
+# Tasks
+gem 'nokogiri'
+gem 'rake'
+
 
 group :development do
    gem 'sqlite3'
