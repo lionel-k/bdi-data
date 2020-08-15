@@ -7,9 +7,14 @@ namespace :db do
   end
 end
 
-desc 'run irb console'
+desc 'Launch server'
 task :s do
   exec 'rackup -p 3000'
+end
+
+desc 'Launch console'
+task :c do
+  Pry.start
 end
 
 Dir.glob('lib/tasks/*.rake').each { |r| load r}
