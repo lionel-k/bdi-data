@@ -54,9 +54,9 @@ post '/ussd' do
 
   if text == ''
     response  = "CON Karibu kuri Burundi Data? \n"
-    response  = "Twogushaka gute ? \n"
+    response += "Twogushaka gute ? \n"
     response += "1. Amafaranga avunjwa gute ? \n"
-    response += "2. Haraza kurwa invura ?"
+    response += '2. Haraza kurwa invura ?'
 
   elsif text == '1'
     exchange_rate = ExchangeRate.find_by(date: Date.today)
