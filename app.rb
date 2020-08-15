@@ -14,7 +14,10 @@ end
 get '/exchangerates' do
   today = Date.today
   exchange_rate = ExchangeRate.find_by(date: today)
-  return json { message: 'not available yet' } if exchange_rate.nil?
+  if exchange_rate.nil?
+    response = { message: 'not available yet' }
+    return json response
+  end
 
   currencies = exchange_rate.currencies
   data = { date: today.strftime('%Y-%m-%d') }
