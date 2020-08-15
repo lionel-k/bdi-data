@@ -6,7 +6,8 @@ task :update_rates do
   html_content = open('https://brb.bi/').read
   doc = Nokogiri::HTML(html_content)
 
-  exchange_rate = ExchangeRate.find_or_create_by(date: Date.yesterday)
+  exchange_rate = ExchangeRate.find_or_create_by(date: Date.today)
+  exchange_rate.currencies.destroy_all
 
   table = doc.search('.views-table')
   rows = table.xpath("//table/tbody/tr")
