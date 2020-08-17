@@ -1,4 +1,4 @@
-ENV['APP_ENV'] = 'test'
+ENV['SINATRA_ENV'] = 'test'
 
 require './app'
 require 'minitest/autorun'
