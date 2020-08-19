@@ -11,44 +11,43 @@ class MyAppTest < Minitest::Test
     Sinatra::Application
   end
 
-  def test_my_default
+  def test_root_url
     get '/'
     assert_equal 'Welcome to Burundi Data',
       JSON.parse(last_response.body)['message']
   end
 
-  # def test_with_params
-  #   get '/meet', :name => 'Frank'
-  #   assert_equal 'Hello Frank!', last_response.body
-  # end
+  def test_current_exchange_rates_not_available
+    get '/exchangerates'
+    assert_equal 404, last_response.status
+    assert_equal 'Exchange Rate not available yet',
+      JSON.parse(last_response.body)['message']
+  end
 
-  # def test_with_user_agent
-  #   get '/', {}, 'HTTP_USER_AGENT' => 'Songbird'
-  #   assert_equal "You're using Songbird!", last_response.body
-  # end
+  def test_exchange_rates_at_non_present_date_not_available
+    get '/exchangerates/1990-01-01'
+    assert_equal 404, last_response.status
+    assert_equal 'Exchange Rate at this date not available',
+      JSON.parse(last_response.body)['message']
+  end
+
+  def test_invalid_date
+    get '/exchangerates/1243'
+    assert_equal 404, last_response.status
+    assert_equal 'invalid date - format: year-month-date',
+      JSON.parse(last_response.body)['message']
+  end
+
+  def test_return_current_rate
+    exchange_rate = ExchangeRate.create!(date: Date.today)
+    rates = %w[USD EUR].each_with_index.map do |name, index|
+      { name: name, buyer: index + 1, seller: index + 2, rate: index + 1.5 }
+    end
+    exchange_rate.currencies.create!(rates)
+
+    get '/exchangerates'
+    assert_equal 200, last_response.status
+    # assert_equal 'Exchange Rate not available yet',
+      # JSON.parse(last_response.body)['message']
+  end
 end
-
-
-
-# require 'app'
-# require 'test/unit'
-# require 'rack/test'
-
-# class HelloWorldTest < Test::Unit::TestCase
-#   include Rack::Test::Methods
-
-#   def app
-#     Sinatra::Application
-#   end
-
-#   def test_it_says_hello_world
-#     get '/'
-#     assert last_response.ok?
-#     assert_equal 'Hello World', last_response.body
-#   end
-
-#   def test_it_says_hello_to_a_person
-#     get '/', :name => 'Simon'
-#     assert last_response.body.include?('Simon')
-#   end
-# end

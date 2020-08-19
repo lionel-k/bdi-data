@@ -17,6 +17,7 @@ get '/exchangerates' do
   exchange_rate = ExchangeRate.find_by(date: today)
   if exchange_rate.nil?
     response = { message: 'Exchange Rate not available yet' }
+    status 404
     return json response
   end
 
@@ -27,8 +28,9 @@ get '/exchangerates/:date' do
   begin
      date = Date.strptime(params[:date],"%Y-%m-%d")
   rescue ArgumentError
-     response = { message: 'invalid date - format: year-month-date' }
-     return json response
+    status 404
+    response = { message: 'invalid date - format: year-month-date' }
+    return json response
   end
 
   exchange_rate = ExchangeRate.find_by(date: date)
@@ -37,6 +39,7 @@ get '/exchangerates/:date' do
       date: date,
       message: 'Exchange Rate at this date not available'
     }
+    status 404
     return json response
   end
 
