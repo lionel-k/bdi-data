@@ -5,3 +5,9 @@
 - Hariho amatara muriyi quartier ?
 - Données présentes sur le site de BRB
 - Données présentes sur le site de l'Isteebu en format PDF
+
+## To run the app locally
+
+```ruby
+ruby app.rb
+``
