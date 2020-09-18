@@ -79,6 +79,10 @@ post '/ussd' do
   status 200
 end
 
+post '/telerivet' do
+  puts params
+end
+
 def return_currencies(exchange_rate)
   currencies = exchange_rate.currencies
   data = { date: exchange_rate.date.strftime('%Y-%m-%d') }
