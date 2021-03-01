@@ -17,4 +17,9 @@ task :c do
   Pry.start
 end
 
+desc 'Launch console'
+task :test do
+  exec 'ruby app_test.rb'
+end
+
 Dir.glob('lib/tasks/*.rake').each { |r| load r}

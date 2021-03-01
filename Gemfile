@@ -18,10 +18,14 @@ gem 'rake'
 
 
 group :development do
-   gem 'sqlite3'
+  gem 'sqlite3'
 end
 
 group :production do
    gem 'pg'
    gem 'activerecord-postgresql-adapter'
+end
+
+group :test do
+  gem 'rack-test'
 end
